@@ -188,9 +188,8 @@ void contactList::searchContact()
             cin >> ans;
             break;
         }
-    }while(ans < 4 && ans >= 1);
+    } while (ans < 4 && ans >= 1);
 }
-
 
 // Phan main
 int main()
