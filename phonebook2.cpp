@@ -21,14 +21,14 @@ public:
     char name[50];
     char number[12];
     char mail[30];
-    contact *prev, *next;
+    contact *next, *prev;
     contact(char n[], char num[], char m[])
     {
         strcpy(name, n);
         strcpy(number, num);
         strcpy(mail, m);
-        prev = NULL;
         next = NULL;
+        prev = NULL;
     };
 
     friend class contactList;
@@ -43,8 +43,11 @@ public:
     void addContact();
     void displayContact();
     void searchContact();
+    void searchByName(char n[]);
+    void searchByNumber(char nu[]);
+    void searchByMail(char m[]);
     void deleteContact(char name[]);
-    void updateContact(char name[]);
+    void updateContact(char n[]);
     void sortContact();
 
     contactList()
@@ -59,23 +62,53 @@ public:
 void contactList::addContact()
 {
     char name[50];
-    char number[12];
+    char number[30];
     char mail[30];
     char ans;
     do
     {
         cout << "Nhap ten: ";
         cin >> name;
+        ptr = head;
+        while (ptr != NULL)
+        {
+            if (strcmp(name, ptr->name) == 0)
+                while (strcmp(name, ptr->name) == 0)
+                {
+                    cout << "So dien thoai khong hop le hoac bi trung!!" << endl
+                         << "Xin moi nhap lai so khac: ";
+                    cin >> number;
+                }
+            ptr = ptr->next;
+        }
         cout << "Nhap so dien thoai: ";
         cin >> number;
-        while (strlen(number) != 10)
+        ptr = head;
+        while (ptr != NULL)
         {
-            cout << "So dien thoai khong hop le!!" << endl
-                 << "Xin moi nhap lai so khac: ";
-            cin >> number;
+            if (strcmp(number, ptr->number) == 0)
+                while ((strlen(number) != 10) || (strcmp(number, ptr->number) == 0))
+                {
+                    cout << "So dien thoai khong hop le hoac bi trung!!" << endl
+                         << "Xin moi nhap lai so khac: ";
+                    cin >> number;
+                }
+            ptr = ptr->next;
         }
         cout << "Nhap tai khoan mail: ";
         cin >> mail;
+        ptr = head;
+        while (ptr != NULL)
+        {
+            if (strcmp(mail, ptr->mail) == 0)
+                while (strcmp(mail, ptr->mail) == 0)
+                {
+                    cout << "Mail bi trung!!" << endl
+                         << "Xin moi nhap lai mail khac: ";
+                    cin >> mail;
+                }
+            ptr = ptr->next;
+        }
         temp = new contact(name, number, mail);
         if (head == NULL)
         {
@@ -111,7 +144,7 @@ void contactList::displayContact()
 }
 
 // C. Search contact
-void contactList::searchContact()
+/*void contactList::searchContact()
 {
     int ans;
     do
@@ -190,6 +223,143 @@ void contactList::searchContact()
         }
     } while (ans < 4 && ans >= 1);
 }
+*/
+void contactList::searchByName(char n[])
+{
+    ptr = head;
+    while (ptr != NULL)
+    {
+        if (strcmp(n, ptr->name) == 0)
+        {
+            cout << "Da tim thay thong tin: " << endl;
+            cout << "Ten: " << ptr->name << endl;
+            cout << "SDT: " << ptr->number << endl;
+            cout << "Mail: " << ptr->mail << endl;
+        }
+        ptr = ptr->next;
+    }
+}
+
+void contactList::searchByNumber(char nu[])
+{
+    ptr = head;
+    while (ptr != NULL)
+    {
+        if (strcmp(nu, ptr->number) == 0)
+        {
+            cout << "Da tim thay thong tin: " << endl;
+            cout << "Ten: " << ptr->name << endl;
+            cout << "SDT: " << ptr->number << endl;
+            cout << "Mail: " << ptr->mail << endl;
+        }
+        ptr = ptr->next;
+    }
+}
+
+void contactList::searchByMail(char m[])
+{
+    ptr = head;
+    while (ptr != NULL)
+    {
+        if (strcmp(m, ptr->mail) == 0)
+        {
+            cout << "Da tim thay thong tin: " << endl;
+            cout << "Ten: " << ptr->name << endl;
+            cout << "SDT: " << ptr->number << endl;
+            cout << "Mail: " << ptr->mail << endl;
+        }
+        ptr = ptr->next;
+    }
+}
+
+void contactList::searchContact()
+{
+    int ans;
+    cin >> ans;
+    switch (ans)
+    {
+    case 1:
+        char n[50];
+        cin >> n;
+        searchByName(n);
+        break;
+    case 2:
+        char nu[12];
+        cin >> nu;
+        searchByMail(nu);
+        break;
+    case 3:
+        char m[50];
+        cin >> m;
+        searchByMail(m);
+        break;
+    default:
+        break;
+    }
+}
+
+void contactList::deleteContact(char s[50])
+{
+    int c = 0;
+    ptr = head;
+    while (ptr != NULL)
+    {
+        if (strcmp(s, ptr->name) == 0)
+        {
+            c = 1;
+            break;
+        }
+        else
+        {
+            c = 2;
+        }
+        ptr = ptr->next;
+    }
+    if (ptr = head)
+    {
+        head = head->next;
+        head->prev = NULL;
+        delete (ptr);
+    }
+    else if (ptr->next == NULL)
+    {
+        ptr->prev->next = NULL;
+        delete (ptr);
+    }
+    else if (ptr != head && ptr->next != NULL)
+    {
+        ptr->prev->next = ptr->next;
+        ptr->next->prev = ptr->prev;
+        delete (ptr);
+    }
+}
+
+void contactList::updateContact(char n[])
+{
+    int c;
+    ptr = head;
+    while (ptr != NULL)
+    {
+        if (strcmp(n, ptr->name) == 0)
+        {
+            cin >> c;
+            switch (c)
+            {
+            case 1:
+                cin >> ptr->name;
+                break;
+            case 2:
+                cin >> ptr->number;
+                break;
+            case 3:
+                cin >> ptr->mail;
+                break;
+            default:
+                break;
+            }
+        }
+    }
+}
 
 // Phan main
 int main()
@@ -218,6 +388,14 @@ int main()
             break;
         case 3:
             phoneBook.searchContact();
+            break;
+        case 4:
+            cin >> name;
+            phoneBook.deleteContact(name);
+            break;
+        case 5:
+            cin >> name;
+            phoneBook.updateContact(name);
             break;
         default:
             break;
