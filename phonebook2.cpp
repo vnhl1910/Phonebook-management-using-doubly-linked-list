@@ -361,6 +361,26 @@ void contactList::updateContact(char n[])
     }
 }
 
+void contactList::sortContact()
+{
+    contact *i, *j;
+    int temp;
+    char n[50];
+    for (i = head; i->next != NULL; i = i->next)
+    {
+        for (j = i->next; j != NULL; j = j->next)
+        {
+            temp = strcmp(i->name, j->name);
+            if (temp > 0)
+            {
+                strcpy(n, i->name);
+                strcpy(i->name, j->name);
+                strcpy(j->name, n);
+            }
+        }
+    }
+}
+
 // Phan main
 int main()
 {
@@ -382,6 +402,7 @@ int main()
         {
         case 1:
             phoneBook.addContact();
+            phoneBook.sortContact();
             break;
         case 2:
             phoneBook.displayContact();
