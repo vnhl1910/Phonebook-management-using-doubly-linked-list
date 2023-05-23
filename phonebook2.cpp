@@ -224,6 +224,7 @@ void contactList::displayContact()
     } while (ans < 4 && ans >= 1);
 }
 */
+// Tim danh ba theo ten
 void contactList::searchByName(char n[])
 {
     ptr = head;
@@ -239,7 +240,7 @@ void contactList::searchByName(char n[])
         ptr = ptr->next;
     }
 }
-
+// Tim danh ba theo SDT
 void contactList::searchByNumber(char nu[])
 {
     ptr = head;
@@ -255,7 +256,7 @@ void contactList::searchByNumber(char nu[])
         ptr = ptr->next;
     }
 }
-
+// Tim danh ba theo Mail
 void contactList::searchByMail(char m[])
 {
     ptr = head;
@@ -271,7 +272,7 @@ void contactList::searchByMail(char m[])
         ptr = ptr->next;
     }
 }
-
+// Tim danh ba
 void contactList::searchContact()
 {
     int ans;
@@ -298,6 +299,7 @@ void contactList::searchContact()
     }
 }
 
+// Xoa lien he trong danh ba
 void contactList::deleteContact(char s[50])
 {
     int c = 0;
@@ -334,6 +336,7 @@ void contactList::deleteContact(char s[50])
     }
 }
 
+// Cap nhat thong tin trong lien he
 void contactList::updateContact(char n[])
 {
     int c;
@@ -381,6 +384,9 @@ void contactList::sortContact()
     }
 }
 */
+
+
+
 // Phan main
 int main()
 {
