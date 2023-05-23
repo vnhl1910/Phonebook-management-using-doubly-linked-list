@@ -360,7 +360,7 @@ void contactList::updateContact(char n[])
         }
     }
 }
-
+/*
 void contactList::sortContact()
 {
     contact *i, *j;
@@ -380,7 +380,7 @@ void contactList::sortContact()
         }
     }
 }
-
+*/
 // Phan main
 int main()
 {
@@ -402,7 +402,7 @@ int main()
         {
         case 1:
             phoneBook.addContact();
-            phoneBook.sortContact();
+            // phoneBook.sortContact();
             break;
         case 2:
             phoneBook.displayContact();
