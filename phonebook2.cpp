@@ -69,18 +69,6 @@ void contactList::addContact()
     {
         cout << "Nhap ten: ";
         cin >> name;
-        ptr = head;
-        while (ptr != NULL)
-        {
-            if (strcmp(name, ptr->name) == 0)
-                while (strcmp(name, ptr->name) == 0)
-                {
-                    cout << "So dien thoai khong hop le hoac bi trung!!" << endl
-                         << "Xin moi nhap lai so khac: ";
-                    cin >> number;
-                }
-            ptr = ptr->next;
-        }
         cout << "Nhap so dien thoai: ";
         cin >> number;
         ptr = head;
