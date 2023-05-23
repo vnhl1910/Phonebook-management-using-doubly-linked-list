@@ -363,7 +363,7 @@ void contactList::updateContact(char n[])
         }
     }
 }
-/*
+
 void contactList::sortContact()
 {
     contact *i, *j;
@@ -379,11 +379,17 @@ void contactList::sortContact()
                 strcpy(n, i->name);
                 strcpy(i->name, j->name);
                 strcpy(j->name, n);
+                strcpy(n, i->number);
+                strcpy(i->number, j->number);
+                strcpy(j->number, n);
+                strcpy(n, i->mail);
+                strcpy(i->mail, j->mail);
+                strcpy(j->mail, n);
             }
         }
     }
 }
-*/
+
 
 
 
@@ -411,6 +417,7 @@ int main()
             // phoneBook.sortContact();
             break;
         case 2:
+            phoneBook.sortContact();
             phoneBook.displayContact();
             break;
         case 3:
